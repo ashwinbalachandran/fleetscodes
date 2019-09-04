@@ -1,12 +1,10 @@
 package src.datastructures;
 
 public class Node {
-    public Node left;
-    public Node right;
-    public Object value;
-    public Node(Object value){
+    Integer value;
+    public Node(Integer value){
         this.value = value;
-        this.left = null;
-        this.right = null;
+        Node left = null;
+        Node right = null;
     }
 }
