@@ -9,8 +9,8 @@ public class Heap {
     private HeapTypes heapType;
     private List<Node> heap;
 
-    public Heap(HeapTypes ht) {
-        this.heapType = ht;
+    public Heap(HeapTypes heaptype) {
+        this.heapType = heaptype;
         heap = new ArrayList<Node>();
     }
     private void swapElements(Integer indexOne, Integer indexTwo){
