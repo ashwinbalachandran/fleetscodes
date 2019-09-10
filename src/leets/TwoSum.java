@@ -1,3 +1,5 @@
+package src.leets;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +10,9 @@ class TwoSum {
             indexSum.put(i,target-nums[i]);
         }
         for(Map.Entry<Integer,Integer> entry: indexSum.entrySet()){
-            if()
+            if(false)
+                return nums;
         }
+                return nums;
     }
 }
