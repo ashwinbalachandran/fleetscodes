@@ -23,9 +23,24 @@ class KLargestElements
     }
 
     private static void printKLargestElements(Integer[] C, int n, int k) {
-        Arrays.sort(C,Collections.reverseOrder());
-        for(int i=0;i<k;i++){
-            System.out.print(C[i]+" ");
+        PriorityQueue<Integer> peeq = new PriorityQueue<>();
+        List<Integer> answerList = new ArrayList<>();
+        int i=0;
+        for(;i<k;i++){
+            peeq.add(C[i]);
+        }
+        for(;i<n;i++){
+            if(peeq.peek()<C[i]){
+                peeq.remove(peeq.poll());
+                peeq.add(C[i]);
+            }
+        }
+        for(i=0;i<k;i++){
+            answerList.add(peeq.poll());
+        }
+        Collections.sort(answerList,Collections.reverseOrder());
+        for(int num:answerList){
+            System.out.print(num+" ");
         }
         System.out.println(" ");
     }
