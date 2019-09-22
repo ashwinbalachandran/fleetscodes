@@ -47,6 +47,8 @@ public class Heap {
                 }
                 else
                     return;
+                if(i>=heap.size())
+                    return;
             }
             else if(heapType.equals(HeapTypes.MINHEAP) && heap.get(i).value < heap.get((i - 1) / 2).value){
                 if(heap.get(i).value > heap.get((2*i)+1).value) {
@@ -58,6 +60,8 @@ public class Heap {
                     i=(2*i)+2;
                 }
                 else
+                    return;
+                if(i>=heap.size())
                     return;
             }
             else
@@ -75,8 +79,16 @@ public class Heap {
         if(heap.size()!=0) {
             Node temp = heap.get(0);
             heap.set(0, heap.get(heap.size() - 1));
+            heap.remove(heap.size()-1);
             siftDown();
             return temp;
+        }
+        else
+            return null;
+    }
+    public Node peek(){
+        if(heap.size()!=0){
+            return heap.get(0);
         }
         else
             return null;
