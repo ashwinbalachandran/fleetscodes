@@ -1,18 +1,24 @@
 package src.leets;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 class TwoSum {
     public int[] twoSum(int[] nums, int target) {
-        Map<Integer,Integer> indexSum = new HashMap<Integer,Integer>();
+        HashMap<Integer,Integer> mapone = new HashMap<>();
+        int res[] = new int[2];
         for(int i=0;i<nums.length;i++){
-            indexSum.put(i,target-nums[i]);
+            mapone.put(nums[i],i);
         }
-        for(Map.Entry<Integer,Integer> entry: indexSum.entrySet()){
-            if(false)
-                return nums;
+        Iterator it = mapone.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            if(mapone.containsKey(Math.abs(target-(int)pair.getKey()))){
+                res[1]=mapone.get(Math.abs(target-(int)pair.getKey()));
+                res[0] = (int)pair.getValue();
+            }
         }
-                return nums;
+        return res;
     }
 }

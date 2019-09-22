@@ -1,12 +1,16 @@
-package cominginhot;
+package src.cominginhot;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
+import java.util.*;
 
 public class Testing {
     public static void main(String[] args) {
+//        LinkedList<Integer> ll = new LinkedList<>();
+//        Iterator it = ll.iterator();
+//        while(it.hasNext()){
+//            Integer ints = (Integer)it.next();
+//        }
+        String [][]wordFreq = new String[5][5];
+        wordFreq[0]= new String[]{"One"};
         HashMap<Integer, String> days = new HashMap<>();
         double a = 1234.34D;
         String x = String.valueOf(a);
@@ -18,6 +22,11 @@ public class Testing {
         days.put(6,"FRIDAY");
         days.put(7,"SATURDAY");
         days.put(1,"SUNDAY");
+        Iterator iter = days.entrySet().iterator();
+        while(iter.hasNext()){
+            Map.Entry p = (Map.Entry)iter.next();
+            System.out.println(p.getKey()+"eeees"+p.getValue());
+        }
         Calendar c = Calendar.getInstance();
         c.set(2013, 5-1, 20);
         //Calendar c = new GregorianCalendar(2015,8,25);
