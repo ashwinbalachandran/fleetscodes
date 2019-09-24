@@ -12,7 +12,7 @@ public class HeapsofCode {
         System.out.println(h.peek());
         while(h.peek()!=null) {
             Node ans = h.poll();
-            System.out.println("Lauda lasan:"+ans.value);
+            System.out.println("Max value checker:"+ans.value);
         }
 
     }

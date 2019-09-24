@@ -3,11 +3,11 @@ package src.leets;
 
 import java.util.*;
 import java.lang.*;
-class Node
+class ListNode
 {
     int data;
-    Node next;
-    Node(int key)
+    ListNode next;
+    ListNode(int key)
     {
         data = key;
         next = null;
@@ -15,7 +15,7 @@ class Node
 }
 class ReverseInSize
 {
-    static Node head;
+    static ListNode head;
 
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -25,23 +25,23 @@ class ReverseInSize
         {
             int n = sc.nextInt();
             int a1 = sc.nextInt();
-            Node head = new Node(a1);
+            ListNode head = new ListNode(a1);
             addToTheLast(head);
             for(int i = 1; i < n; i++)
             {
                 int a = sc.nextInt();
-                addToTheLast(new Node(a));
+                addToTheLast(new ListNode(a));
             }
 
             int k = sc.nextInt();
             GfG gfg = new GfG();
-            Node res = gfg.reverse(head, k);
+            ListNode res = gfg.reverse(head, k);
             printList(res);
             System.out.println();
         }
     }
 
-    public static void addToTheLast(Node node)
+    public static void addToTheLast(ListNode node)
     {
         if(head == null)
         {
@@ -49,14 +49,14 @@ class ReverseInSize
         }
         else
         {
-            Node temp = head;
+            ListNode temp = head;
             while(temp.next != null)
                 temp = temp.next;
             temp.next = node;
         }
     }
 
-    public static void printList(Node node)
+    public static void printList(ListNode node)
     {
         while(node != null)
         {
@@ -82,14 +82,14 @@ class Node
 */
 class GfG
 {
-    public static Node reverse(Node node, int k)
+    public static ListNode reverse(ListNode node, int k)
     {
         if(null==node.next)
             return node;
         boolean cnt = false;
         int kcount = 0;
-        Node head = node;
-        Node curr = node, prev = null, nxt = null;
+        ListNode head = node;
+        ListNode curr = node, prev = null, nxt = null;
         while(kcount<k && curr!=null){
             kcount++;
             nxt = curr.next;

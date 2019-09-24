@@ -2,8 +2,8 @@ package src.leets;
 
 import java.util.*;
  class Add_LinkedList {
-    Node head;
-    void printList(Node head) {
+    ListNode head;
+    void printList(ListNode head) {
         while (head != null) {
             System.out.print(head.data + " ");
             head = head.next;
@@ -13,7 +13,7 @@ import java.util.*;
     public void push(int new_data) {
         /* 1 & 2: Allocate the Node &
                   Put in the data*/
-        Node new_node = new Node(new_data);
+        ListNode new_node = new ListNode(new_data);
         /* 3. Make next of new Node as head */
         new_node.next = head;
         /* 4. Move the head to point to new Node */
@@ -42,7 +42,7 @@ import java.util.*;
             }
             Add_LinkedList list3 = new Add_LinkedList();
             Add g = new Add();
-            Node rs = g.addTwoLists(list1.head, list2.head);
+            ListNode rs = g.addTwoLists(list1.head, list2.head);
             list3.printList(rs);
             System.out.println();
             T--;
@@ -62,16 +62,16 @@ class Node
 class Add {
 
     // This function will add the numbers represented by two linked lists
-    Node addTwoLists(Node first, Node second) {
-        Node ans = null;
-        Node curr = ans;
+    ListNode addTwoLists(ListNode first, ListNode second) {
+        ListNode ans = null;
+        ListNode curr = ans;
         int start = 0;
         if(first==null)
             return second;
         else if (second == null)
             return first;
-        Node num1 = first;
-        Node num2 = second;
+        ListNode num1 = first;
+        ListNode num2 = second;
         int carry = 0;
         int rem = 0;
         int ansDigit = 0;
@@ -81,12 +81,12 @@ class Add {
                 ansDigit = sum%10;
                 carry = ansDigit/10;
                 if(start!=0){
-                    ans.next = new Node(ansDigit);
+                    ans.next = new ListNode(ansDigit);
                     ans = ans.next;
                 }
                 else{
 
-                    ans = new Node(ansDigit);
+                    ans = new ListNode(ansDigit);
                     ans.next = null;
                     start++;
                 }
@@ -98,13 +98,13 @@ class Add {
             num2 = num2.next;
         }
         if(null==num1 && null!=num2){
-            ans.next = new Node(num2.data+carry);
+            ans.next = new ListNode(num2.data+carry);
             carry = 0;
             num2= num2.next;
             ans = ans.next;
         }
         if(null==num2 && null!=num1){
-            ans.next = new Node(num1.data+carry);
+            ans.next = new ListNode(num1.data+carry);
             carry = 0;
             num1= num1.next;
             ans = ans.next;

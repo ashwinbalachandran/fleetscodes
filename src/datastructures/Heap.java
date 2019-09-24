@@ -35,38 +35,44 @@ public class Heap {
 
     private void siftDown() {
         int i = 0;
-        do {
-            if (heapType.equals(HeapTypes.MAXHEAP)) {
-                if(heap.get(i).value < heap.get((2*i)+1).value) {
-                    swapElements(i, (2 * i) + 1);
-                    i=(2*i)+1;
-                }
-                else if(heap.get(i).value < heap.get((2*i)+2).value){
-                    swapElements(i,(2*i)+2);
-                    i=(2*i)+2;
+        int leftChild = Integer.MIN_VALUE;
+        int rightChild = Integer.MIN_VALUE;
+        while (true) {
+            if(((2*i)+1)<heap.size()){
+                leftChild = heap.get((2*i)+1).value;
+                if(((2*i)+2)<heap.size()){
+                    rightChild = heap.get((2*i)+2).value;
                 }
                 else
-                    return;
-                if(i>=heap.size())
-                    return;
-            }
-            else if(heapType.equals(HeapTypes.MINHEAP) && heap.get(i).value < heap.get((i - 1) / 2).value){
-                if(heap.get(i).value > heap.get((2*i)+1).value) {
-                    swapElements(i, (2 * i) + 1);
-                    i=(2*i)+1;
-                }
-                else if(heap.get(i).value > heap.get((2*i)+2).value){
-                    swapElements(i,(2*i)+2);
-                    i=(2*i)+2;
-                }
-                else
-                    return;
-                if(i>=heap.size())
-                    return;
+                    rightChild = Integer.MIN_VALUE;
             }
             else
                 return;
-        } while (i<heap.size());
+            if (heapType.equals(HeapTypes.MAXHEAP)) {
+                if(rightChild>leftChild && heap.get(i).value<rightChild){
+                    swapElements(i,(2*i)+2);
+                    i=(2*i)+2;
+                }
+                else if(heap.get(i).value<leftChild){
+                    swapElements(i,(2*i)+1);
+                    i=(2*i)+1;
+                }
+                else
+                    return;
+            }
+            else if (heapType.equals(HeapTypes.MINHEAP)) {
+                if(rightChild!=Integer.MIN_VALUE && rightChild<leftChild && heap.get(i).value>rightChild){
+                    swapElements(i,(2*i)+2);
+                    i=(2*i)+2;
+                }
+                else if(heap.get(i).value>leftChild){
+                    swapElements(i,(2*i)+1);
+                    i=(2*i)+1;
+                }
+                else
+                    return;
+            }
+        }
 
     }
 
