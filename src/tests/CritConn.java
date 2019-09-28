@@ -1,16 +1,37 @@
 package src.tests;
 
-import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class CritConn {
     private int id;
     private int[] ids;
     private int[] low;
     private List<Integer>[] graph;
+
+    static class sortEdges implements Comparator<PairInt> {
+        @Override
+        public int compare(PairInt edge1, PairInt edge2) {
+            int u1 = edge1.first;
+            int u2 = edge2.first;
+            int v1 = edge1.second;
+            int v2 = edge2.second;
+            if (u1 < u2)
+                return -1;
+            else {
+                if (u1 == u2) {
+                    if (v1 < v2)
+                        return -1;
+                    else if (v1 == v2)
+                        return 0;
+                    else
+                        return 1;
+                }
+                else
+                    return 1;
+            }
+        }
+    }
 
     public List<PairInt> findBridges(int n, List<PairInt> roads) {
         List<PairInt> bridges = new ArrayList<>();
@@ -19,6 +40,7 @@ public class CritConn {
         low = new int[n + 1];
         id = 1;
         visit(1, -1, bridges);
+        Collections.sort(bridges,new sortEdges());
         return bridges;
     }
 
@@ -53,19 +75,19 @@ public class CritConn {
     public static void main(String[] args) {
         CritConn cc = new CritConn();
         List<PairInt> inp = new ArrayList<>();
-        inp.add(new PairInt(1,2));
-        inp.add(new PairInt(1,3));
-        inp.add(new PairInt(2,3));
-        inp.add(new PairInt(3,4));
-        inp.add(new PairInt(3,6));
-        inp.add(new PairInt(4,5));
-        inp.add(new PairInt(6,7));
-        inp.add(new PairInt(6,9));
-        inp.add(new PairInt(7,8));
-        inp.add(new PairInt(8,9));
-        List<PairInt> res = cc.findBridges(9,inp);
-        for(PairInt r:res){
-            System.out.println(r.first+","+r.second);
+        inp.add(new PairInt(1, 2));
+        inp.add(new PairInt(1, 3));
+        inp.add(new PairInt(2, 3));
+        inp.add(new PairInt(3, 4));
+        inp.add(new PairInt(3, 6));
+        inp.add(new PairInt(4, 5));
+        inp.add(new PairInt(6, 7));
+        inp.add(new PairInt(6, 9));
+        inp.add(new PairInt(7, 8));
+        inp.add(new PairInt(8, 9));
+        List<PairInt> res = cc.findBridges(9, inp);
+        for (PairInt r : res) {
+            System.out.println(r.first + "," + r.second);
         }
     }
 }
