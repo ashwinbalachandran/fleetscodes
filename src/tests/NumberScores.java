@@ -12,28 +12,28 @@ public class NumberScores {
         int m = number;
         int r = 0;
         boolean flag = false;
-        int nc = 0;
+        int fc = 0;
         int prev = number % 10;
-        int oneCount = 0;
-        int onescore = 0;
+        int threeCount = 0;
+        int threeScore = 0;
         int consecLength = 1;
-        int evenDigScore = 0;
+        int oddDigScore = 0;
         int conscore = 0;
         int i=0;
         while (m != 0) {
             r = m % 10;
-            if (r == 9)
-                ++nc;
-            if (prev == 1 && r == 1 && oneCount > 2) {
-                onescore += 5;
-                oneCount++;
-            } else if (prev == 1 && r == 1 && oneCount==1) {
-                onescore += 5;
-                oneCount++;
-            } else if (r == 1) {
-                oneCount++;
+            if (r == 5)
+                fc+=2;
+            if (prev == 3 && r == 3 && threeCount >= 2) {
+                threeScore += 4;
+                threeCount++;
+            } else if (prev == 3 && r == 3 && threeCount==1) {
+                threeScore += 4;
+                threeCount++;
+            } else if (r == 3) {
+                threeCount++;
             } else
-                oneCount = 0;
+                threeCount = 0;
             if (r == prev - 1) {
                 ++consecLength;
                 flag = false;
@@ -42,8 +42,8 @@ public class NumberScores {
                 conscore += consecLength*consecLength;
                 consecLength = 1;
             }
-            if (r % 2 == 0) {
-                ++evenDigScore;
+            if (r % 2 != 0) {
+                ++oddDigScore;
             }
             prev = r;
             m /= 10;
@@ -53,13 +53,17 @@ public class NumberScores {
         System.out.println("Conse"+consecLength+" and "+conscore);
         if(!flag)
             conscore += consecLength*consecLength -1;
-        return onescore + (evenDigScore * 2) + conscore + (nc * 4);
+        int mulSix = 0;
+        if(number%5==0)
+            mulSix=6;
+        System.out.println("Three score = "+threeScore+"Odd"+oddDigScore+"Consec"+conscore+"Five="+fc+"Sixmul"+mulSix);
+        return threeScore + (oddDigScore) + conscore + (fc)+mulSix;
     }
 
     public static int compute_number_score(int number) {
         int score = 0;
         score += getDigScore(number);
-        score += number % 7 == 0 ? 1 : 0;
+//        score += number % 7 == 0 ? 1 : 0;
         return score;
     }
 }
