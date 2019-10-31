@@ -76,13 +76,14 @@ public class CritConn {
         CritConn cc = new CritConn();
         List<PairInt> inp = new ArrayList<>();
         inp.add(new PairInt(1, 2));
-        inp.add(new PairInt(1, 3));
+//        inp.add(new PairInt(1, 3));
         inp.add(new PairInt(2, 3));
         inp.add(new PairInt(3, 4));
-        inp.add(new PairInt(3, 6));
+//        inp.add(new PairInt(3, 6));
         inp.add(new PairInt(4, 5));
+        inp.add(new PairInt(5, 6));
         inp.add(new PairInt(6, 7));
-        inp.add(new PairInt(6, 9));
+//        inp.add(new PairInt(6, 9));
         inp.add(new PairInt(7, 8));
         inp.add(new PairInt(8, 9));
         List<PairInt> res = cc.findBridges(9, inp);
